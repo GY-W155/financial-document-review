@@ -76,11 +76,23 @@ mysql -uroot -p123456 -h127.0.0.1 -P3309 financial_doc_review < database/seed.sq
 
 ## 大模型接入
 
-系统默认走规则引擎（无需 LLM 即可出风险结论）。要启用 LLM（多轮对话、票据字段抽取、整体建议）：
+系统默认走规则引擎（无需 LLM 即可出风险结论）。要启用 LLM（多轮对话、票据字段抽取、整体建议），本项目默认对接 **DeepSeek（OpenAI 兼容）**，文本与视觉分用两个模型：
 
-1. 安装/配置：`OPENAI_API_KEY`、`OPENAI_BASE_URL`、`OPENAI_MODEL`、`OPENAI_VISION_MODEL`。
-2. 图片 OCR：可选 `pip install paddleocr` 并置 `OCR_ENABLED=true`；否则 图片走 LLM 视觉或降级为 `manual_review`。
-3. 所有 LLM 调用失败均自动降级为规则式分析，不阻断主流程。
+| 变量 | 值 | 用途 |
+|------|----|------|
+| `OPENAI_BASE_URL` | `https://api.deepseek.com` | OpenAI 兼容接口 |
+| `OPENAI_MODEL` | `deepseek-v4-flash` | 文本：字段抽取 / 多轮对话 / 整体建议 |
+| `OPENAI_VISION_MODEL` | `deepseek-v4-flash-vision-exp` | 视觉：PNG/JPG 票据识别 |
+| `OPENAI_API_KEY` | 你的 key | 必填 |
+
+配置方式（均为 `.env`，已被 gitignore，不会进库）：
+- 本地后端：写 `backend/.env`；Docker：写 `docker/.env`（改后需 `docker compose up -d --build`）。
+- 也可直接改 `backend/app/config.py` 的默认值。
+
+不同类型附件的处理路径：
+- **PDF 发票**：服务端 pymupdf 抽文本 → DeepSeek（文本）字段抽取，不走视觉。
+- **PNG / JPG / WEBP 图片**：`OCR_ENABLED=false` 时 → 走 `deepseek-v4-flash-vision-exp` 视觉识别（自动按 png/jpeg/webp 传 MIME）；如需本地 OCR，`pip install paddleocr` 并置 `OCR_ENABLED=true`。
+- 所有 LLM 调用失败均自动降级为规则式分析 / `manual_review`，不阻断主流程，但会降低解析字段完整度。
 
 ## 演示链路（demo_chain.py）
 

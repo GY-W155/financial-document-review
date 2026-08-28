@@ -45,7 +45,8 @@ async def chat(messages: list[dict[str, str]], model: str | None = None,
     return resp.choices[0].message.content or ""
 
 
-async def chat_vision(image_base64: str, prompt: str, model: str | None = None) -> str:
+async def chat_vision(image_base64: str, prompt: str, model: str | None = None,
+                      mime: str = "image/png") -> str:
     client = _get_client()
     if client is None:
         raise RuntimeError("LLM 未配置")
@@ -57,7 +58,7 @@ async def chat_vision(image_base64: str, prompt: str, model: str | None = None) 
                 "content": [
                     {"type": "text", "text": prompt},
                     {"type": "image_url",
-                     "image_url": {"url": f"data:image/png;base64,{image_base64}"}},
+                     "image_url": {"url": f"data:{mime};base64,{image_base64}"}},
                 ],
             }
         ],

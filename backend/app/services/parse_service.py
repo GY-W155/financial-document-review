@@ -38,7 +38,13 @@ async def extract_vision_text(att: DocumentAttachment) -> str:
         return ""
     try:
         data = open(att.file_path, "rb").read()
-        return await chat_vision(encode_image_base64(data), prompts.VISION_OCR_PROMPT)
+        mime = "image/png"
+        lower = (att.file_name or "").lower()
+        if lower.endswith((".jpg", ".jpeg")):
+            mime = "image/jpeg"
+        elif lower.endswith(".webp"):
+            mime = "image/webp"
+        return await chat_vision(encode_image_base64(data), prompts.VISION_OCR_PROMPT, mime=mime)
     except Exception as exc:
         logger.warning("LLM 视觉识别失败：%s", exc)
         return ""

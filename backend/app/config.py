@@ -28,11 +28,11 @@ class Settings(BaseSettings):
     MAX_UPLOAD_SIZE: int = 50 * 1024 * 1024  # 50MB
     ALLOWED_FILE_TYPES: list[str] = ["pdf", "png", "jpg", "jpeg"]
 
-    # LLM（OpenAI 兼容）
+    # LLM（OpenAI 兼容；本项目默认走 DeepSeek，可由 .env 覆盖）
     OPENAI_API_KEY: str = ""
-    OPENAI_BASE_URL: str = "https://api.openai.com/v1"
-    OPENAI_MODEL: str = "gpt-4o-mini"
-    OPENAI_VISION_MODEL: str = "gpt-4o-mini"
+    OPENAI_BASE_URL: str = "https://api.deepseek.com"
+    OPENAI_MODEL: str = "deepseek-v4-flash"
+    OPENAI_VISION_MODEL: str = "deepseek-v4-flash-vision-exp"
     LLM_ENABLED: bool = True
     OCR_ENABLED: bool = False
 
