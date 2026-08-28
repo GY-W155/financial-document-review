@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"d:/python/PythonProject/financial-document-review/frontend\" && grep -rn \"<el-menu\\\\|el-aside\" src/ || echo \"\\(no menu/aside outside App\\)\"; echo \"=== approvals list_workflows ===\"; sed -n '1,60p' ../backend/app/api/approvals.py | grep -n \"workflows\\\\|WorkflowOut\\\\|def \" )",
+      "Read(//d/python/PythonProject/backend/app/api/**)",
+      "Bash(docker info *)",
+      "Bash(docker version *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git --version)",
+      "Bash(grep -iE \"\\\\.env$|secret|\\\\.db$\")",
+      "Bash(git check-ignore *)"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+rule,gold,detected,tp,fp,fn,precision,recall,f1
+amount_consistency,1,1,1,0,0,1.0,1.0,1.0
+attachment_completeness,8,8,8,0,0,1.0,1.0,1.0
+batch_payment_consistency,1,1,1,0,0,1.0,1.0,1.0
+behavior_anomaly,1,1,1,0,0,1.0,1.0,1.0
+contract_payment_consistency,1,1,1,0,0,1.0,1.0,1.0
+duplicate_invoice,1,1,1,0,0,1.0,1.0,1.0
+line_total_consistency,2,2,2,0,0,1.0,1.0,1.0
+market_price,1,1,1,0,0,1.0,1.0,1.0
+supplier_risk,1,1,1,0,0,1.0,1.0,1.0

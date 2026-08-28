@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+backend/.env
+.venv/
+test.db
+*.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Uploads (运行时文件存储)
+uploads/
+
+# 工具
+*.log
+.DS_Store
+docker/.env

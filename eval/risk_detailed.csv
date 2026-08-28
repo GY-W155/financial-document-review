@@ -1,0 +1,9 @@
+case,gold_risk_types,detected_risk_types,tp,fp,fn
+金额不一致+附件缺失,amount_consistency|attachment_completeness|contract_payment_consistency,amount_consistency|attachment_completeness|contract_payment_consistency,3,0,0
+金额全部一致(仅缺附件),attachment_completeness,attachment_completeness,1,0,0
+明细合计不一致,attachment_completeness|line_total_consistency,attachment_completeness|line_total_consistency,2,0,0
+供应商黑名单风险,attachment_completeness|supplier_risk,attachment_completeness|supplier_risk,2,0,0
+重复发票,attachment_completeness|duplicate_invoice,attachment_completeness|duplicate_invoice,2,0,0
+批量付款：金额不符+重复收款对象,attachment_completeness|batch_payment_consistency|line_total_consistency,attachment_completeness|batch_payment_consistency|line_total_consistency,3,0,0
+市场价格偏离,attachment_completeness|market_price,attachment_completeness|market_price,2,0,0
+历史金额突增(需先有一笔已通过付款),attachment_completeness|behavior_anomaly,attachment_completeness|behavior_anomaly,2,0,0

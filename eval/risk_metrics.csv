@@ -1,0 +1,10 @@
+dataset,metric,value
+golden_risks,total_cases,8
+golden_risks,total_gold,17
+golden_risks,total_detected,17
+golden_risks,tp,17
+golden_risks,fp,0
+golden_risks,fn,0
+golden_risks,precision,1.0
+golden_risks,recall,1.0
+golden_risks,f1,1.0
